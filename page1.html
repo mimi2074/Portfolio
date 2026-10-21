@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modele 3D</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Skrypt do wyswietlania 3D -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+    <h3>Modele 3D</h3>
+        
+            
+            
+            <div class="viewer-wrapper">
+              
+                
+                    <model-viewer id="viewer" src="kostka.glb"  camera-controls auto-rotate shadow-intensity="1" alt="Model 3D"></model-viewer>
+
+
+                  <button class="nav-btn prev" id="prevBtn">&#10094;</button>
+                <button class="nav-btn next" id="nextBtn">&#10095;</button>
+            
+               
+      
+       
+            </div>
+             <a href="index.html" class="btn">Wróć do Strony Główniej</a>
+
+            <!-- Glowny obiekt model-viewer -->
+            
+            
+            <!-- Przyciski nawigacyjne -->
+    
+
+    <!-- Skrypt JavaScript do przełączania modeli -->
+    <script>
+        // 1. Zastąp poniższe nazwy plikami ze swoimi modelami (.glb / .gltf)
+        const models = [
+            'kostka.glb',
+            'postac.glb',
+            'domek.glb',
+            'rzym.glb',
+            'tower bridge.glb'
+        ];
+
+        let currentIndex = 0;
+        const viewer = document.getElementById('viewer');
+
+        function updateModel() {
+            viewer.src = models[currentIndex];
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % models.length; // przechodzi do przodu i pętli
+            updateModel();
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + models.length) % models.length; // cofa i pętli
+            updateModel();
+        });
+    </script>
+
+</body>
+</html>
